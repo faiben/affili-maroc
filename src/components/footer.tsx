@@ -50,6 +50,20 @@ export function Footer() {
               </li>
             </ul>
           </div>
+          <div>
+            <h4 className="font-semibold mb-4">{t("legal")}</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/confidentialite">{t("privacyPolicy")}</Link>
+              </li>
+              <li>
+                <Link href="/cookies">{t("cookiePolicy")}</Link>
+              </li>
+              <li>
+                <Link href="/conditions-utilisation">{t("termsOfUse")}</Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
           © {currentYear} {t("appName")}. {t("trust")}

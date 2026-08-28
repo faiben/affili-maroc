@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { SessionProvider } from "@/components/session-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const tajawal = Tajawal({
@@ -58,6 +59,7 @@ export default function RootLayout({
             <LanguageProvider>
               {children}
               <Toaster />
+              <CookieConsentBanner />
             </LanguageProvider>
           </ThemeProvider>
         </SessionProvider>
