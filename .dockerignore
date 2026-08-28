@@ -1,0 +1,12 @@
+.next
+node_modules
+.git
+.env
+dev.db
+dev.db-journal
+*.log
+.DS_Store
+coverage
+.nyc_output
+.vscode
+.idea
