@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { useLanguage } from "@/components/language-provider";
 import { CATEGORIES, CommissionType } from "@/lib/constants";
+import { categoryLabel } from "@/lib/i18n";
 import { toast } from "sonner";
 
 export function ProductForm() {
@@ -147,7 +148,7 @@ export function ProductForm() {
             <SelectContent>
               {CATEGORIES.map((cat) => (
                 <SelectItem key={cat} value={cat}>
-                  {cat}
+                  {categoryLabel(cat, t)}
                 </SelectItem>
               ))}
             </SelectContent>

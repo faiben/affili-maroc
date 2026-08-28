@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Copy, Check, MessageCircle, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/components/language-provider";
 import { toast } from "sonner";
 
 interface ShareButtonsProps {
@@ -28,6 +29,7 @@ function TwitterIcon({ className }: { className?: string }) {
 }
 
 export function ShareButtons({ url, title }: ShareButtonsProps) {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
@@ -57,10 +59,10 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
-      toast.success("Lien copié !");
+      toast.success(t("linkCopied"));
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error("Impossible de copier le lien");
+      toast.error(t("copyLinkError"));
     }
   }
 
@@ -94,7 +96,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Partager sur ${item.name}`}
+            aria-label={`${t("shareSocialTitle")} ${item.name}`}
           >
             <item.icon className="h-4 w-4" />
           </a>
@@ -106,7 +108,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
         size="icon"
         className="rounded-full"
         onClick={copyLink}
-        aria-label="Copier le lien"
+        aria-label={t("copyLink")}
       >
         {copied ? <Check className="h-4 w-4 text-green-600" /> : <Copy className="h-4 w-4" />}
       </Button>
@@ -116,7 +118,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
         size="icon"
         className="rounded-full"
         onClick={nativeShare}
-        aria-label="Partager"
+        aria-label={t("shareSocialTitle")}
       >
         <Share2 className="h-4 w-4" />
       </Button>

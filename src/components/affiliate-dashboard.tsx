@@ -177,14 +177,14 @@ export function AffiliateDashboard({
           setRulesDialogOpen(true);
           return;
         }
-        toast.error(data.error || "Erreur");
+        toast.error(data.error || t("errGeneric"));
         return;
       }
 
       toast.success(t("generatedLink"));
       router.refresh();
     } catch {
-      toast.error("Erreur serveur");
+      toast.error(t("serverError"));
     }
   }
 
@@ -416,7 +416,7 @@ export function AffiliateDashboard({
                             variant="ghost"
                             size="icon"
                             onClick={() => copyLink(link.code)}
-                            title="Copier le lien d'affiliation"
+                            title={t("copyAffiliateLinkTitle")}
                           >
                             <Copy className="h-4 w-4" />
                           </Button>
@@ -424,7 +424,7 @@ export function AffiliateDashboard({
                             variant="ghost"
                             size="icon"
                             onClick={() => copyLink(link.code, "s")}
-                            title="Copier le lien court pour réseaux sociaux"
+                            title={t("copyShortLinkTitle")}
                           >
                             <LinkIcon className="h-4 w-4" />
                           </Button>
@@ -432,7 +432,7 @@ export function AffiliateDashboard({
                             variant="ghost"
                             size="icon"
                             onClick={() => openShare(link.code)}
-                            title="Partager sur les réseaux sociaux"
+                            title={t("shareSocialTitle")}
                           >
                             <Share2 className="h-4 w-4" />
                           </Button>

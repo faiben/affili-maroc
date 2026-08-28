@@ -58,7 +58,7 @@ export function RulesDialog({
 
       if (!res.ok) {
         const data = await res.json();
-        toast.error(data.error || "Erreur");
+        toast.error(data.error || t("errGeneric"));
         return;
       }
 

@@ -41,7 +41,7 @@ export default function RegisterPage() {
     const confirmPassword = formData.get("confirmPassword") as string;
 
     if (password !== confirmPassword) {
-      toast.error("Les mots de passe ne correspondent pas");
+      toast.error(t("passwordsDoNotMatch"));
       setIsLoading(false);
       return;
     }
@@ -64,15 +64,15 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.error || "Une erreur est survenue");
+        toast.error(data.error || t("anErrorOccurred"));
         setIsLoading(false);
         return;
       }
 
-      toast.success("Compte créé avec succès !");
+      toast.success(t("accountCreated"));
       router.push("/auth/connexion");
     } catch {
-      toast.error("Une erreur est survenue");
+      toast.error(t("anErrorOccurred"));
     } finally {
       setIsLoading(false);
     }
@@ -86,7 +86,7 @@ export default function RegisterPage() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{t("signUp")}</CardTitle>
             <CardDescription>
-              Créez votre compte et rejoignez AffiliMaroc
+              {t("joinToday")}
             </CardDescription>
           </CardHeader>
           <CardContent>

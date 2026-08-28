@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { useLanguage } from "@/components/language-provider";
 import { CATEGORIES } from "@/lib/constants";
+import { categoryLabel } from "@/lib/i18n";
 import { formatCurrency } from "@/lib/format";
 
 type Product = {
@@ -50,7 +51,7 @@ export function CatalogContent({ products }: { products: Product[] }) {
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold mb-4">{t("catalog")}</h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Découvrez les produits et services marocains disponibles à la promotion.
+          {t("catalogSubtitle")}
         </p>
       </div>
 
@@ -58,7 +59,7 @@ export function CatalogContent({ products }: { products: Product[] }) {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Rechercher un produit..."
+            placeholder={t("searchProducts")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-10"
@@ -71,10 +72,10 @@ export function CatalogContent({ products }: { products: Product[] }) {
               <SelectValue placeholder={t("category")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Toutes les catégories</SelectItem>
+              <SelectItem value="all">{t("allCategories")}</SelectItem>
               {CATEGORIES.map((cat) => (
                 <SelectItem key={cat} value={cat}>
-                  {cat}
+                  {categoryLabel(cat, t)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -103,7 +104,7 @@ export function CatalogContent({ products }: { products: Product[] }) {
               <CardHeader>
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-lg">{product.name}</CardTitle>
-                  <Badge variant="secondary">{product.category}</Badge>
+                  <Badge variant="secondary">{categoryLabel(product.category, t)}</Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {product.enterprise.enterprise?.companyName}
@@ -111,7 +112,7 @@ export function CatalogContent({ products }: { products: Product[] }) {
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
                 <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {product.description || "Aucune description"}
+                  {product.description || t("noDescription")}
                 </p>
                 <div className="mt-auto space-y-2">
                   <div className="flex justify-between items-center">

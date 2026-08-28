@@ -64,7 +64,7 @@ export function RulesManager() {
 
       if (!res.ok) {
         const data = await res.json();
-        toast.error(data.error || "Erreur");
+        toast.error(data.error || t("errGeneric"));
         return;
       }
 
@@ -81,7 +81,7 @@ export function RulesManager() {
   async function deleteRule(id: string) {
     const res = await fetch(`/api/rules/${id}`, { method: "DELETE" });
     if (!res.ok) {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
       return;
     }
     toast.success(t("ruleDeleted"));

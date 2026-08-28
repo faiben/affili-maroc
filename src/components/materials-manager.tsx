@@ -80,7 +80,7 @@ export function MaterialsManager() {
 
       const data = await res.json();
       setImageUrl(data.url);
-      toast.success("Image uploadée");
+      toast.success(t("imageUploadedToast"));
     } finally {
       setUploading(false);
     }
@@ -106,7 +106,7 @@ export function MaterialsManager() {
       payload.content = textContent.trim();
     } else {
       if (!imageUrl) {
-        toast.error("Veuillez télécharger une image");
+        toast.error(t("pleaseUploadImage"));
         return;
       }
       payload.imageUrl = imageUrl;
@@ -122,7 +122,7 @@ export function MaterialsManager() {
 
       if (!res.ok) {
         const data = await res.json();
-        toast.error(data.error || "Erreur");
+        toast.error(data.error || t("errGeneric"));
         return;
       }
 
@@ -148,7 +148,7 @@ export function MaterialsManager() {
       method: "DELETE",
     });
     if (!res.ok) {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
       return;
     }
     toast.success(t("materialDeleted"));

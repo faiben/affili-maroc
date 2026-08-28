@@ -57,7 +57,7 @@ export function AdminDashboard({
   disputes,
   settings,
 }: AdminDashboardProps) {
-  const { isAr } = useLanguage();
+  const { isAr, t } = useLanguage();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -71,22 +71,22 @@ export function AdminDashboard({
 
   const stats = [
     {
-      title: "Utilisateurs",
+      title: t("users"),
       value: users.length,
       icon: Users,
     },
     {
-      title: "Produits",
+      title: t("adminProducts"),
       value: products.length,
       icon: Package,
     },
     {
-      title: "Revenus générés",
+      title: t("revenueGenerated"),
       value: formatCurrency(totalRevenue),
       icon: DollarSign,
     },
     {
-      title: "Commissions",
+      title: t("commission"),
       value: formatCurrency(totalCommissions),
       icon: CreditCard,
     },
@@ -102,10 +102,10 @@ export function AdminDashboard({
 
       if (!res.ok) throw new Error();
 
-      toast.success(approved ? "Produit approuvé" : "Produit rejeté");
+      toast.success(approved ? t("productApproved") : t("productRejected"));
       router.refresh();
     } catch {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
     }
   }
 
@@ -119,10 +119,10 @@ export function AdminDashboard({
 
       if (!res.ok) throw new Error();
 
-      toast.success("Retrait mis à jour");
+      toast.success(t("withdrawalUpdated"));
       router.refresh();
     } catch {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
     }
   }
 
@@ -136,10 +136,10 @@ export function AdminDashboard({
 
       if (!res.ok) throw new Error();
 
-      toast.success("Conversion mise à jour");
+      toast.success(t("conversionUpdated"));
       router.refresh();
     } catch {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
     }
   }
 
@@ -162,42 +162,42 @@ export function AdminDashboard({
 
       if (!res.ok) throw new Error();
 
-      toast.success("Paramètres enregistrés");
+      toast.success(t("settingsSaved"));
       router.refresh();
     } catch {
-      toast.error("Erreur");
+      toast.error(t("errGeneric"));
     }
   }
 
   return (
     <div dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Admin Panel</h1>
-        <p className="text-muted-foreground">Gestion de la plateforme</p>
+        <h1 className="text-3xl font-bold">{t("adminPanel")}</h1>
+        <p className="text-muted-foreground">{t("platformManagement")}</p>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="mb-6 flex-wrap h-auto">
           <TabsTrigger value="overview">
-            <LayoutDashboard className="h-4 w-4 mr-2" /> Vue d&apos;ensemble
+            <LayoutDashboard className="h-4 w-4 mr-2" /> {t("overview")}
           </TabsTrigger>
           <TabsTrigger value="users">
-            <Users className="h-4 w-4 mr-2" /> Utilisateurs
+            <Users className="h-4 w-4 mr-2" /> {t("users")}
           </TabsTrigger>
           <TabsTrigger value="products">
-            <Package className="h-4 w-4 mr-2" /> Produits
+            <Package className="h-4 w-4 mr-2" /> {t("adminProducts")}
           </TabsTrigger>
           <TabsTrigger value="conversions">
-            <DollarSign className="h-4 w-4 mr-2" /> Conversions
+            <DollarSign className="h-4 w-4 mr-2" /> {t("adminConversions")}
           </TabsTrigger>
           <TabsTrigger value="withdrawals">
-            <CreditCard className="h-4 w-4 mr-2" /> Retraits
+            <CreditCard className="h-4 w-4 mr-2" /> {t("withdrawals")}
           </TabsTrigger>
           <TabsTrigger value="disputes">
-            <AlertCircle className="h-4 w-4 mr-2" /> Litiges
+            <AlertCircle className="h-4 w-4 mr-2" /> {t("adminDisputes")}
           </TabsTrigger>
           <TabsTrigger value="settings">
-            <Settings className="h-4 w-4 mr-2" /> Paramètres
+            <Settings className="h-4 w-4 mr-2" /> {t("settings")}
           </TabsTrigger>
         </TabsList>
 
@@ -222,17 +222,17 @@ export function AdminDashboard({
         <TabsContent value="users">
           <Card>
             <CardHeader>
-              <CardTitle>Utilisateurs</CardTitle>
+              <CardTitle>{t("users")}</CardTitle>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Nom</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Rôle</TableHead>
-                    <TableHead>Statut</TableHead>
-                    <TableHead>Date</TableHead>
+                    <TableHead>{t("name")}</TableHead>
+                    <TableHead>{t("email")}</TableHead>
+                    <TableHead>{t("role")}</TableHead>
+                    <TableHead>{t("status")}</TableHead>
+                    <TableHead>{t("date")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

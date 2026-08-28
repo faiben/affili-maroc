@@ -35,7 +35,7 @@ export function WithdrawalForm({ balance }: { balance: number }) {
     }
 
     if (amount > balance) {
-      toast.error("Solde insuffisant");
+      toast.error(t("insufficientBalance"));
       setIsLoading(false);
       return;
     }
@@ -53,14 +53,14 @@ export function WithdrawalForm({ balance }: { balance: number }) {
 
       if (!res.ok) {
         const data = await res.json();
-        toast.error(data.error || "Erreur");
+        toast.error(data.error || t("errGeneric"));
         return;
       }
 
-      toast.success("Demande de retrait envoyée");
+      toast.success(t("withdrawalRequested"));
       router.refresh();
     } catch {
-      toast.error("Erreur serveur");
+      toast.error(t("serverError"));
     } finally {
       setIsLoading(false);
     }
@@ -77,7 +77,7 @@ export function WithdrawalForm({ balance }: { balance: number }) {
           <SelectContent>
             {WITHDRAWAL_METHODS.map((m) => (
               <SelectItem key={m.value} value={m.value}>
-                {m.label}
+                {isAr ? m.labelAr : m.label}
               </SelectItem>
             ))}
           </SelectContent>
@@ -103,7 +103,7 @@ export function WithdrawalForm({ balance }: { balance: number }) {
         <Input
           id="accountInfo"
           name="accountInfo"
-          placeholder="RIB / Numéro de téléphone"
+          placeholder={t("ribOrPhone")}
           required
         />
       </div>

@@ -85,10 +85,10 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
       if (!res.ok) throw new Error();
 
-      toast.success("Profil mis à jour");
+      toast.success(t("profileUpdated"));
       router.refresh();
     } catch {
-      toast.error("Erreur lors de la mise à jour");
+      toast.error(t("profileUpdateError"));
     } finally {
       setIsLoading(false);
     }
@@ -126,7 +126,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
             <User className="h-4 w-4 mr-2" /> {t("profile")}
           </TabsTrigger>
           <TabsTrigger value="security">
-            <Shield className="h-4 w-4 mr-2" /> Sécurité
+            <Shield className="h-4 w-4 mr-2" /> {t("security")}
           </TabsTrigger>
           <TabsTrigger value="preferences">
             <Globe className="h-4 w-4 mr-2" /> {t("settings")}
@@ -186,7 +186,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="website">Site web</Label>
+                        <Label htmlFor="website">{t("website")}</Label>
                         <Input
                           id="website"
                           name="website"
@@ -194,7 +194,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="city">Ville</Label>
+                        <Label htmlFor="city">{t("city")}</Label>
                         <Input
                           id="city"
                           name="city"
@@ -203,7 +203,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="address">Adresse</Label>
+                      <Label htmlFor="address">{t("address")}</Label>
                       <Input
                         id="address"
                         name="address"
@@ -234,7 +234,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 {user.role === UserRole.AFFILIATE && user.affiliate && (
                   <>
                     <div className="space-y-2">
-                      <Label htmlFor="bio">Bio</Label>
+                      <Label htmlFor="bio">{t("bio")}</Label>
                       <Input
                         id="bio"
                         name="bio"
@@ -242,7 +242,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="website">Site web</Label>
+                      <Label htmlFor="website">{t("website")}</Label>
                       <Input
                         id="website"
                         name="website"
@@ -299,25 +299,25 @@ export function ProfileForm({ user }: ProfileFormProps) {
         <TabsContent value="security">
           <Card>
             <CardHeader>
-              <CardTitle>Sécurité</CardTitle>
+              <CardTitle>{t("security")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Vérification de l&apos;email</p>
+                  <p className="font-medium">{t("emailVerification")}</p>
                   <p className="text-sm text-muted-foreground">
                     {user.emailVerified
-                      ? "Email vérifié"
-                      : "Vérifiez votre adresse email"}
+                      ? t("emailVerified")
+                      : t("verifyYourEmail")}
                   </p>
                 </div>
                 <OtpVerification email={user.email} verified={!!user.emailVerified} />
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">Double authentification</p>
+                  <p className="font-medium">{t("twoFactorAuth")}</p>
                   <p className="text-sm text-muted-foreground">
-                    Activer la 2FA pour plus de sécurité
+                    {t("enable2FA")}
                   </p>
                 </div>
                 <Switch />
@@ -336,7 +336,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
                 <div>
                   <p className="font-medium">{t("darkMode")}</p>
                   <p className="text-sm text-muted-foreground">
-                    Basculer entre le mode clair et sombre
+                    {t("toggleTheme")}
                   </p>
                 </div>
                 <Switch

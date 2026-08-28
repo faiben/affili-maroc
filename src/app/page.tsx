@@ -22,17 +22,17 @@ export default function HomePage() {
     {
       icon: TrendingUp,
       title: t("growSales"),
-      description: "Augmentez vos ventes grâce à un réseau d'affiliés motivés.",
+      description: t("feature1Desc"),
     },
     {
       icon: Wallet,
       title: t("myEarnings"),
-      description: "Gagnez des commissions sur chaque vente générée.",
+      description: t("feature2Desc"),
     },
     {
       icon: Shield,
       title: t("trust"),
-      description: "Tracking fiable, paiements sécurisés et support local.",
+      description: t("feature3Desc"),
     },
   ];
 
@@ -46,17 +46,17 @@ export default function HomePage() {
     {
       name: "Khadija B.",
       role: t("enterprise"),
-      text: "AffiliMaroc nous a permis d'augmenter nos ventes en ligne de 40% en 3 mois.",
+      text: t("testimonial1"),
     },
     {
       name: "Youssef A.",
       role: t("affiliate"),
-      text: "Je touche mes commissions chaque semaine directement sur mon compte CIH.",
+      text: t("testimonial2"),
     },
     {
       name: "Fatima Z.",
       role: t("affiliate"),
-      text: "La plateforme est simple, les liens se génèrent en un clic, et le support répond en darija.",
+      text: t("testimonial3"),
     },
   ];
 
@@ -112,8 +112,8 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <p className="text-2xl font-bold">+2 500 affiliés</p>
-                    <p className="text-white/80">actifs dans tout le Maroc</p>
+                    <p className="text-2xl font-bold">{t("heroAffiliates")}</p>
+                    <p className="text-white/80">{t("heroInMorocco")}</p>
                   </div>
                 </div>
               </motion.div>
@@ -129,7 +129,7 @@ export default function HomePage() {
                 {t("howItWorks")}
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Une solution complète pour connecter les marques marocaines avec les créateurs de contenu.
+                {t("sectionSubtitle")}
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -245,7 +245,7 @@ export default function HomePage() {
                 {t("heroTitle")}
               </h2>
               <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-                Rejoignez la première plateforme d&apos;affiliation dédiée au marché marocain.
+                {t("ctaText")}
               </p>
               <Button size="lg" variant="secondary" asChild>
                 <Link href="/auth/inscription">{t("cta")}</Link>

@@ -69,7 +69,7 @@ function LoginPage() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{t("signIn")}</CardTitle>
             <CardDescription>
-              Connectez-vous à votre compte AffiliMaroc
+              {t("connectToYourAccount")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -124,7 +124,7 @@ function LoginPage() {
               </p>
             </div>
             <div className="mt-4 rounded-lg bg-muted p-3 text-xs text-muted-foreground">
-              <p className="font-semibold mb-1">Comptes de démo :</p>
+              <p className="font-semibold mb-1">{t("demoAccounts")}</p>
               <p>entreprise@demo.ma / demo1234</p>
               <p>affilie@demo.ma / demo1234</p>
               <p>admin@affilimaroc.ma / demo1234</p>
