@@ -1,11 +1,14 @@
-import { auth } from "@/auth";
+import NextAuth from "next-auth";
 import { NextResponse } from "next/server";
+import { authConfig } from "@/auth.config";
 
 const protectedRoutes = [
   { prefix: "/tableau-de-bord/entreprise", role: "ENTERPRISE" },
   { prefix: "/tableau-de-bord/affilie", role: "AFFILIATE" },
   { prefix: "/admin", role: "ADMIN" },
 ];
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { nextUrl } = req;
@@ -17,7 +20,9 @@ export default auth((req) => {
 
   if (matched) {
     if (!user) {
-      return NextResponse.redirect(new URL("/auth/connexion", nextUrl));
+      const login = new URL("/auth/connexion", nextUrl);
+      login.searchParams.set("callbackUrl", nextUrl.pathname + nextUrl.search);
+      return NextResponse.redirect(login);
     }
     if (user.role !== matched.role) {
       return NextResponse.redirect(new URL("/", nextUrl));
