@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isNetlify = process.env.NETLIFY === "true" || process.env.NEXT_PUBLIC_NETLIFY === "true";
+
 const nextConfig = {
-  output: "standalone",
+  // Netlify handles the Next.js output via its own runtime; "standalone"
+  // is only used for the Docker deployment.
+  output: isNetlify ? undefined : "standalone",
   images: {
     remotePatterns: [
       {
